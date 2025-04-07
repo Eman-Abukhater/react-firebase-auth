@@ -1,0 +1,48 @@
+/* App.css — Global styles */
+
+body {
+    margin: 0;
+    padding: 10px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  h1, h2, h3 {
+    color: #222;
+    margin: 0.5em 0;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  nav {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    margin: 5px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
