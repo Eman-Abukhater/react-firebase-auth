@@ -1,14 +1,17 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext"; // Import AuthContext
+import { useNavigate } from "react-router-dom"; // Import useNavigate to handle redirection
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, loginWithGoogle } = useContext(AuthContext); // Use AuthContext to get login function
+  const navigate = useNavigate(); // Initialize useNavigate for redirecting
 
   const handleLogin = async () => {
     try {
       await login(email, password); // Call the login function from context
+      navigate("/"); // Redirect to homepage/dashboard after successful login
     } catch (error) {
       console.error("Error logging in:", error);
     }
@@ -17,6 +20,7 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await loginWithGoogle(); // Google login
+      navigate("/"); // Redirect to homepage/dashboard after successful login
     } catch (error) {
       console.error("Google login error:", error);
     }
