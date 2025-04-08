@@ -1,28 +1,32 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext"; // Import AuthContext
-import { useNavigate } from "react-router-dom"; // Import useNavigate to handle redirection
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, loginWithGoogle } = useContext(AuthContext); // Use AuthContext to get login function
-  const navigate = useNavigate(); // Initialize useNavigate for redirecting
+  const { login, loginWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      await login(email, password); // Call the login function from context
-      navigate("/"); // Redirect to homepage/dashboard after successful login
+      await login(email, password);
+      navigate("/home");
     } catch (error) {
-      console.error("Error logging in:", error);
+      if (error.code === "auth/user-not-found") {
+        alert("User not found. Please sign up first.");
+      } else {
+        alert("Login failed: " + error.message);
+      }
     }
   };
 
   const handleGoogleLogin = async () => {
     try {
-      await loginWithGoogle(); // Google login
-      navigate("/"); // Redirect to homepage/dashboard after successful login
+      await loginWithGoogle();
+      navigate("/home");
     } catch (error) {
-      console.error("Google login error:", error);
+      console.error("Google login error:", error.message);
     }
   };
 
@@ -43,6 +47,7 @@ const Login = () => {
       />
       <button onClick={handleLogin}>Login</button>
       <button onClick={handleGoogleLogin}>Login with Google</button>
+      <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
     </div>
   );
 };
