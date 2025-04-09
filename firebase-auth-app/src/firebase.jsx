@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, GithubAuthProvider} from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,8 +12,13 @@ const firebaseConfig = {
 };
 
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig); //connect our app with firebase
-export const auth = getAuth(app); //getAuth is a method that returns the authentication instance
-export const googleProvider = new GoogleAuthProvider();// GoogleAuthProvider is a class that provides the Google authentication provider
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig); // connect our app with firebase
+export const auth = getAuth(app); // getAuth is a method that returns the authentication instance
+
+// Google Authentication Provider
+export const googleProvider = new GoogleAuthProvider();
+
+// GitHub Authentication Provider (Added this)
+export const githubProvider = new GithubAuthProvider();

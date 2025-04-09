@@ -6,7 +6,7 @@ import {
   signOut,
   signInWithPopup,
 } from "firebase/auth";
-import { googleProvider } from "../firebase";
+import { googleProvider, githubProvider } from "../firebase"; // Include the GitHub provider here
 
 const AuthContext = createContext(); // Create a context for authentication to keep track of user state
 
@@ -29,10 +29,14 @@ export const AuthProvider = ({ children }) => {
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
   const loginWithGoogle = () => signInWithPopup(auth, googleProvider);
+  
+  // Add GitHub login function
+  const loginWithGitHub = () => signInWithPopup(auth, githubProvider);
+
   const logout = () => signOut(auth);
 
   // Pass authentication data to context consumers
-  const value = { user, signup, login, loginWithGoogle, logout };
+  const value = { user, signup, login, loginWithGoogle, loginWithGitHub, logout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

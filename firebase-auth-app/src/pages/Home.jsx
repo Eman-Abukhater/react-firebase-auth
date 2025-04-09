@@ -8,7 +8,6 @@ function Home() {
       {user ? (
         <div>
           <h1>Welcome, {user.displayName || user.email}</h1>
-          <button onClick={logout}>Log Out</button>
         </div>
       ) : (
         <h1>Please log in</h1>
